@@ -4,6 +4,8 @@
 
 @using OnlineBakery.Models;
 @model List<OnlineBakery.Models.FlavorTreat>;
+
+<p>Menu</p>
 <hr />
 <div class="box">
   <div class="inner-box">
@@ -14,7 +16,7 @@
       {
         <tr>
           <td>@Html.Label($"{item.Flavor.Name} {item.Treat.Name}")</td>
-          <td>@Html.ActionLink("", "AddToCart", null, new { id = item.FlavorTreatId }, new { @class = "btn btn-info fa fa-minus"})</td>
+          <td>@Html.ActionLink("", "Something", "Cart", new { id = item.FlavorTreatId }, new { @class = "btn btn-info fa fa-plus"})</td>
         </tr>
       }
       </table>
@@ -31,7 +33,7 @@
 <hr />
 <div class="box">
   <div class="inner-box">
-    @if (@ViewBag.Cart.Any())
+    @if (@ViewBag.Cart != null)
     {
       <table>
         <tr>
@@ -51,6 +53,7 @@
         </tr>
       }
       </table>
+      @Html.ActionLink(" Purchase Cart", "BuyCart", null, null, new { @class = "btn btn-info fa fa-money"})
     } 
     else
     {

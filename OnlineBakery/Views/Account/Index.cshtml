@@ -3,6 +3,8 @@
 }
 
 @using System.Security.Claims
+@using OnlineBakery.ViewModels
+@model LoginViewModel
 
 <p>Authentication with Identity</p>
 <hr />
@@ -14,6 +16,21 @@
 }
 else
 {
-    <p>@Html.ActionLink("Register", "Register", null, null, new {@class = "btn btn-info fa fa-pencil-square-o"})</p>
-    <p>@Html.ActionLink("Log in", "Login", null, null, new {@class = "btn btn-info fa fa-sign-in"})</p>
+  <p>Log in with your account</p>
+  <hr />
+  @using (Html.BeginForm())
+  {
+    <table>
+      <tr>
+        <td>@Html.LabelFor(m => m.Email)</td>
+        <td>@Html.TextBoxFor(m => m.Email)</td>
+      </tr>
+      <tr>
+        <td>@Html.LabelFor(m => m.Password)</td>
+        <td>@Html.PasswordFor(m => m.Password)</td>
+      </tr>
+    </table>
+    <hr />
+    <button type="submit" value="Log in" class="btn btn-info fa"><i class="fa-sign-in"> Log in</i></button>
+  }
 }

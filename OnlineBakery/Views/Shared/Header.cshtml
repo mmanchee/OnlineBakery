@@ -24,7 +24,7 @@
       else
       {
         @Html.ActionLink(" History", "Index", "Cart", null, new {@class = "btn btn-info fa fa-th-list"})
-        @Html.ActionLink(" New Cart", "NewCart", "Cart", null, new {@class = "btn btn-info fa fa-shopping-cart"})
+        @Html.ActionLink(" New Cart", "Create", "Cart", null, new {@class = "btn btn-info fa fa-shopping-cart"})
       }
     }
   </div>
@@ -37,6 +37,7 @@
     else
     {
       @Html.ActionLink(" Log in", "Login", "Account", null, new { @class = "btn btn-info fa fa-sign-in" })
+      @Html.ActionLink(" Register", "Register", "Account", null, new {@class = "btn btn-info fa fa-pencil-square-o"})
     }
   </div>
 </div>

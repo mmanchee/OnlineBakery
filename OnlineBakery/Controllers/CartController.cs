@@ -25,16 +25,16 @@ namespace OnlineBakery.Controllers
     }
     
     // Index *****************
-    public async Task<ActionResult> History()
+    public async Task<ActionResult> Index()
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
-      var userOrders = _db.Carts.Where(entry => entry.User.Id == currentUser.Id).OrderBy(entry => entry.OrderId).ToList();
-      return View(userOrders);
+      var model = _db.Carts.Where(entry => entry.User.Id == currentUser.Id).OrderBy(entry => entry.OrderId).ToList();
+      return View(model);
     }
 
     // New Cart ****************
-    public async Task<ActionResult> NewCart()
+    public async Task<ActionResult> Create()
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
@@ -46,17 +46,26 @@ namespace OnlineBakery.Controllers
       List<FlavorTreat> model = _db.FlavorTreat.OrderBy(x => x.FlavorId).ToList();
       return View(model);
     }
+    public ActionResult Something(int id)
+    {
+      ViewBag.nothing = id;
+      return View();
+    }
     // AddToCart
     [HttpPost]
-    public async Task<ActionResult> AddToCart(Cart cart)
+    public async Task<ActionResult> AddToCart(int id)
     {
+      Console.WriteLine(id);
+      Cart cart = new Cart();
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
+      cart.FlavorTreatId = id;
       cart.OrderId = 0;
+      cart.Quantity = 0;
       cart.User = currentUser;
       _db.Carts.Add(cart);
       _db.SaveChanges();
-      return RedirectToAction("NewCart");
+      return RedirectToAction("Create");
     }
     // DeleteItem
     [HttpPost]
@@ -65,7 +74,7 @@ namespace OnlineBakery.Controllers
       var thisCart = _db.Carts.FirstOrDefault(cart => cart.CartId == id);
       _db.Carts.Remove(thisCart);
       _db.SaveChanges();
-      return RedirectToAction("NewCart");
+      return RedirectToAction("Create");
     }
     [HttpPost]
     public ActionResult MoreItem(int id)
@@ -73,7 +82,7 @@ namespace OnlineBakery.Controllers
       var thisCart = _db.Carts.FirstOrDefault(cart => cart.CartId == id);
       thisCart.Quantity++;
       _db.SaveChanges();
-      return RedirectToAction("NewCart");
+      return RedirectToAction("Create");
     }
     [HttpPost]
     public ActionResult LessItem(int id)
@@ -81,7 +90,7 @@ namespace OnlineBakery.Controllers
       var thisCart = _db.Carts.FirstOrDefault(cart => cart.CartId == id);
       thisCart.Quantity--;
       _db.SaveChanges();
-      return RedirectToAction("NewCart");
+      return RedirectToAction("Create");
     }
     // BuyCart
     public async Task<ActionResult> BuyCart()
@@ -96,10 +105,10 @@ namespace OnlineBakery.Controllers
         item.OrderId = order;
       }
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = order});
     }
     // Details **************
-    public async Task<ActionResult> Receipt(int id)
+    public async Task<ActionResult> Details(int id)
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);

@@ -4,7 +4,6 @@
 
 @model OnlineBakery.Models.Flavor;
 
-@Html.ActionLink(" Home", "Index", "Home", null, new { @class="btn btn-info fa fa-home" })
 @Html.ActionLink(" All Flavors", "Index",null, null, new { @class="btn btn-info fa fa-th-list" })
 @Html.ActionLink(" Edit", "Edit", new { id = Model.FlavorId }, new { @class="btn btn-info fa fa-edit" })
 @Html.ActionLink(" Delete", "Delete", new { id = Model.FlavorId }, new { @class="btn btn-info fa fa-times" })
