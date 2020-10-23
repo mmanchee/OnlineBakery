@@ -1,0 +1,68 @@
+﻿#footer {
+  text-align: center;
+  position:fixed;
+  bottom:0px;
+  left:0px;
+  width:100%;
+  color:#CCC;
+  background:rgb(84, 82, 117);
+  padding:8px;
+}
+#header {
+  text-align: center;
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100%;
+  background:#333;
+  padding:8px;
+  letter-spacing: 10px;
+  font-weight: 900;
+  font-size: 50px;
+  color:rgb(202, 162, 162);
+}
+.sticky-top {
+  position: fixed;
+  top: 0;
+  width:100%;
+}
+.title-button {
+  float: left;
+}
+.userinfo {
+  letter-spacing: 1px;
+  font-weight: 500;
+  font-size: 15px;
+  float: right;
+}
+#render {
+  font-size: 25px;
+  margin-top: 200px;
+}
+/* Makes a scroll box */
+.box {
+  background-color:cornflowerblue; 
+  color: white;
+  height: 200px;
+  width: 80%;
+  text-align: left;
+  overflow-y: scroll;
+  margin-top: 2% 0 2% 5%;
+  border-radius: 10px;
+}
+.inner-box {
+  margin: 2% 5% 2% 5%;
+}
+a {
+  color: rgb(202, 162, 162);
+}
+.std-btn {
+  margin-right: auto;
+  margin-left: auto;
+  letter-spacing: 1px;
+  font-weight: 500;
+  font-size: 15px;
+}
+.btn {
+  margin: 0 5px 0 5px;
+}
