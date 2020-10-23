@@ -10,9 +10,7 @@
 {
     <p>Hello @User.Identity.Name!</p>
     <p>What would you like to do?</p>
-    @Html.ActionLink(" History", "Index", "Cart", null, new {@class = "btn btn-info fa fa-th-list"})
-    @Html.ActionLink(" New Cart", "NewCart", "Cart", null, new {@class = "btn btn-info fa fa-shopping-cart"})
-    @Html.ActionLink(" Log Off", "LogOff", "Account", null, new {@class = "btn btn-info fa fa-sign-out"})
+    <p>Choose from the options above.</p>
 }
 else
 {
