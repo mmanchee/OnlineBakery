@@ -1,0 +1,34 @@
+@{
+  Layout = "_Layout";
+}
+
+@using OnlineBakery.Models;
+@model List<OnlineBakery.Models.Cart>;
+
+<p>Receitp Details</p>
+<hr />
+<div class="box">
+  <div class="inner-box">
+    @if (@Model.Any())
+    {
+      <table>
+        <tr>
+          <th>Item</th>
+          <th>Quantity</th>
+        </tr>
+      @foreach (Cart line in Model)
+      {
+        <tr>
+          <td>@Html.Label($"{line.FlavorTreat.Flavor.Name} {line.FlavorTreat.Treat.Name}")</td>
+          <td>@Html.Label($"{line.Quantity}")</td>
+        </tr>
+      }
+      </table>
+    } 
+    else
+    {
+      <p>No items in your cart</p>
+    }
+  </div>  
+</div>
+<hr />

@@ -25,7 +25,7 @@ namespace OnlineBakery.Controllers
     }
     
     // Index *****************
-    public async Task<ActionResult> Index()
+    public async Task<ActionResult> History()
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
@@ -56,7 +56,7 @@ namespace OnlineBakery.Controllers
       cart.User = currentUser;
       _db.Carts.Add(cart);
       _db.SaveChanges();
-      return RedirectToAction("AddMore");
+      return RedirectToAction("NewCart");
     }
     // DeleteItem
     [HttpPost]
@@ -64,6 +64,22 @@ namespace OnlineBakery.Controllers
     {
       var thisCart = _db.Carts.FirstOrDefault(cart => cart.LineId == id);
       _db.Carts.Remove(thisCart);
+      _db.SaveChanges();
+      return RedirectToAction("NewCart");
+    }
+    [HttpPost]
+    public ActionResult MoreItem(int id)
+    {
+      var thisCart = _db.Carts.FirstOrDefault(cart => cart.LineId == id);
+      thisCart.Quantity++;
+      _db.SaveChanges();
+      return RedirectToAction("NewCart");
+    }
+    [HttpPost]
+    public ActionResult LessItem(int id)
+    {
+      var thisCart = _db.Carts.FirstOrDefault(cart => cart.LineId == id);
+      thisCart.Quantity--;
       _db.SaveChanges();
       return RedirectToAction("NewCart");
     }
@@ -83,7 +99,7 @@ namespace OnlineBakery.Controllers
       return RedirectToAction("Index");
     }
     // Details **************
-    public async Task<ActionResult> Details(int id)
+    public async Task<ActionResult> Receipt(int id)
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);

@@ -1,0 +1,61 @@
+@{
+  Layout = "_Layout";
+}
+
+@using OnlineBakery.Models;
+@model List<OnlineBakery.Models.FlavorTreat>;
+<hr />
+<div class="box">
+  <div class="inner-box">
+    @if (@Model.Any())
+    {
+      <table>
+      @foreach (FlavorTreat item in Model)
+      {
+        <tr>
+          <td>@Html.Label($"{item.Flavor.Name} {item.Treat.Name}")</td>
+          <td>@Html.ActionLink("", "AddToCart", null, new { id = item.FlavorTreatId }, new { @class = "btn btn-info fa fa-minus"})</td>
+        </tr>
+      }
+      </table>
+    } 
+    else
+    {
+      <p>No items in your Availible</p>
+    }
+  </div>  
+</div>
+<hr />
+<hr />
+<p>Cart</p>
+<hr />
+<div class="box">
+  <div class="inner-box">
+    @if (@ViewBag.Cart.Any())
+    {
+      <table>
+        <tr>
+          <th>Item</th>
+          <th>Quantity</th>
+          <th>More</th>
+          <th>Less</th>
+        </tr>
+      @foreach (Cart line in ViewBag.Cart)
+      {
+        <tr>
+          <td>@Html.Label($"{line.FlavorTreat.Flavor.Name} {line.FlavorTreat.Treat.Name}")
+            @Html.ActionLink("", "DeleteItem", null, new { id = line.LineId }, new { @class = "btn btn-info fa fa-remove"})</td>
+          <td>@Html.Label($"{line.Quantity}")</td>
+          <td>@Html.ActionLink("", "MoreItem", null, new { id = line.LineId }, new { @class = "btn btn-info fa fa-plus"})</td>
+          <td>@Html.ActionLink("", "LessItem", null, new { id = line.LineId }, new { @class = "btn btn-info fa fa-minus"})</td>
+        </tr>
+      }
+      </table>
+    } 
+    else
+    {
+      <p>No items in your cart</p>
+    }
+  </div>  
+</div>
+<hr />
