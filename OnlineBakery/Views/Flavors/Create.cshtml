@@ -2,12 +2,12 @@
   Layout = "_Layout";
 }
 
-@model Library.Models.Author
+@model OnlineBakery.Models.Flavor
 
 @Html.ActionLink(" Home", "Index", "Home", null, new { @class="btn btn-info fa fa-home" })
-@Html.ActionLink(" All Authors", "Index", null, null, new { @class="btn btn-info fa fa-address-book-o" })
+@Html.ActionLink(" All Flavors", "Index", null, null, new { @class="btn btn-info fa fa-th-list" })
 <hr />
-<p>Add Author</p>
+<p>Add Flavor</p>
 <hr />
 @using (Html.BeginForm())
 {
@@ -17,10 +17,10 @@
       <td>@Html.TextBoxFor(model => model.Name)</td>
     </tr>
     <tr>
-      <td>@Html.Label("Book")</td>
-      <td>@Html.DropDownList("BookId", "none")</td>
+      <td>@Html.Label("Treat")</td>
+      <td>@Html.DropDownList("TreatId", "none")</td>
     </tr>
   </table>
-  <button type="submit" class="btn btn-default fa"><i class="fa-user-plus"> Add Author</i></button>
+  <button type="submit" class="btn btn-info fa"><i class="fa-plus"> Add Flavor</i></button>
 }
 <hr />

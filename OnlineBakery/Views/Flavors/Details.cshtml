@@ -1,31 +1,36 @@
 @{
   Layout = "_Layout";
 }
-@using Library.Models
-@model Library.Models.Author
 
-<h2>Author Details</h2>
+@model OnlineBakery.Models.Flavor;
+
+@Html.ActionLink(" Home", "Index", "Home", null, new { @class="btn btn-info fa fa-home" })
+@Html.ActionLink(" All Flavors", "Index",null, null, new { @class="btn btn-info fa fa-th-list" })
+@Html.ActionLink(" Edit", "Edit", new { id = Model.FlavorId }, new { @class="btn btn-info fa fa-edit" })
+@Html.ActionLink(" Delete", "Delete", new { id = Model.FlavorId }, new { @class="btn btn-info fa fa-times" })
 <hr />
-<h3>Author Name: @Html.DisplayFor(model => model.Name)</h3>
-<hr>
-<h3>Books by this @Html.DisplayFor(model => model.Name):</h3>
-@if (@Model.Books.Count == 0)
-{
-  <p>There are no books by @Html.DisplayFor(model => model.Name).</p>
-}
-else
-{
-  <ul>
-    @foreach (var join in Model.Books)
+<p>@Html.DisplayFor(model => model.Name)'s Details</p>
+<hr />
+<p>@Html.Label("Name"): @Html.DisplayFor(model => model.Name)</p>
+<hr />
+<div class="box">
+  <div class="inner-box">
+    @if(@Model.Treats.Count == 0)
     {
-      <li>@Html.ActionLink(@join.Book.Title, "Details", "Books", new { id = join.Book.BookId })
-        @Html.ActionLink("Delete", "DeleteBook", "Authors", new { joinId = @join.AuthorBookId, AuthorId = Model.AuthorId },
-    new { @class="btn btn-info fa fa-times" })
-      </li>
+      <p>This Flavor does not have any Treats.</p>
     }
-  </ul>
-}
-
-<p>@Html.ActionLink("Back to list", "Index")</p>
-<p>@Html.ActionLink("Edit Author", "Edit", new { id = Model.AuthorId })</p>
-<p>@Html.ActionLink("Delete Author", "Delete", new { id = Model.AuthorId })</p>
+    else
+    {
+      <p>Treats</p>
+      <ul>
+      @foreach(var join in Model.Treats)
+      {
+        <li>@join.Treat.Name
+        @Html.ActionLink("Delete", "DeleteTreat", "Flavors", new { joinId = @join.FlavorTreatId, FlavorId = Model.FlavorId }, new { @class="btn btn-info fa fa-times" })
+        </li>
+      }
+      </ul>
+    }
+  </div>
+</div>
+<hr />

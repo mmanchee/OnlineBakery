@@ -1,0 +1,26 @@
+@{
+  Layout = "_Layout";
+}
+
+@model OnlineBakery.Models.Treat
+
+@Html.ActionLink(" Home", "Index", "Home", null, new { @class="btn btn-info fa fa-home" })
+@Html.ActionLink(" All Treats", "Index", null, null, new { @class="btn btn-info fa fa-th-list" })
+<hr />
+<p>Add Treat</p>
+<hr />
+@using (Html.BeginForm())
+{
+  <table>
+    <tr>
+      <td>@Html.Label("Name")</td>
+      <td>@Html.TextBoxFor(model => model.Name)</td>
+    </tr>
+    <tr>
+      <td>@Html.Label("Flavor")</td>
+      <td>@Html.DropDownList("FlavorId", "none")</td>
+    </tr>
+  </table>
+  <button type="submit" class="btn btn-info fa"><i class="fa-plus"> Add Treat</i></button>
+}
+<hr />

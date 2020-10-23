@@ -2,17 +2,17 @@
   Layout = "_Layout";
 }
 
-@model OnlineBakery.Models.Flavor
+@model OnlineBakery.Models.Treat
 
 @Html.ActionLink(" Home", "Index", "Home", null, new { @class="btn btn-info fa fa-home" })
-@Html.ActionLink(" All Flavors", "Index", null, null, new { @class="btn btn-info fa fa-th-list" })
+@Html.ActionLink(" All Treats", "Index", null, null, new { @class="btn btn-info fa fa-th-list" })
 <hr />
 
 <p>Edit @Html.DisplayFor(model => model.Name)</p>
 <hr />
 @using (Html.BeginForm())
 {
-  @Html.HiddenFor(model => model.FlavorId)
+  @Html.HiddenFor(model => model.TreatId)
   <table>
     <tr>
       <td>@Html.LabelFor(model => model.Name)</td>

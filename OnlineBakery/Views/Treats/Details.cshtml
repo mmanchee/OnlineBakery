@@ -1,0 +1,36 @@
+@{
+  Layout = "_Layout";
+}
+
+@model OnlineBakery.Models.Treat;
+
+@Html.ActionLink(" Home", "Index", "Home", null, new { @class="btn btn-info fa fa-home" })
+@Html.ActionLink(" All Treats", "Index",null, null, new { @class="btn btn-info fa fa-th-list" })
+@Html.ActionLink(" Edit", "Edit", new { id = Model.TreatId }, new { @class="btn btn-info fa fa-edit" })
+@Html.ActionLink(" Delete", "Delete", new { id = Model.TreatId }, new { @class="btn btn-info fa fa-times" })
+<hr />
+<p>@Html.DisplayFor(model => model.Name)'s Details</p>
+<hr />
+<p>@Html.Label("Name"): @Html.DisplayFor(model => model.Name)</p>
+<hr />
+<div class="box">
+  <div class="inner-box">
+    @if(@Model.Flavors.Count == 0)
+    {
+      <p>This Treat does not have any Flavors.</p>
+    }
+    else
+    {
+      <p>Flavors</p>
+      <ul>
+      @foreach(var join in Model.Flavors)
+      {
+        <li>@join.Flavor.Name
+        @Html.ActionLink("Delete", "DeleteFlavor", "Treats", new { joinId = @join.FlavorTreatId, TreatId = Model.TreatId }, new { @class="btn btn-info fa fa-times" })
+        </li>
+      }
+      </ul>
+    }
+  </div>
+</div>
+<hr />
