@@ -62,7 +62,7 @@ namespace OnlineBakery.Controllers
     [HttpPost]
     public ActionResult DeleteItem(int id)
     {
-      var thisCart = _db.Carts.FirstOrDefault(cart => cart.LineId == id);
+      var thisCart = _db.Carts.FirstOrDefault(cart => cart.CartId == id);
       _db.Carts.Remove(thisCart);
       _db.SaveChanges();
       return RedirectToAction("NewCart");
@@ -70,7 +70,7 @@ namespace OnlineBakery.Controllers
     [HttpPost]
     public ActionResult MoreItem(int id)
     {
-      var thisCart = _db.Carts.FirstOrDefault(cart => cart.LineId == id);
+      var thisCart = _db.Carts.FirstOrDefault(cart => cart.CartId == id);
       thisCart.Quantity++;
       _db.SaveChanges();
       return RedirectToAction("NewCart");
@@ -78,7 +78,7 @@ namespace OnlineBakery.Controllers
     [HttpPost]
     public ActionResult LessItem(int id)
     {
-      var thisCart = _db.Carts.FirstOrDefault(cart => cart.LineId == id);
+      var thisCart = _db.Carts.FirstOrDefault(cart => cart.CartId == id);
       thisCart.Quantity--;
       _db.SaveChanges();
       return RedirectToAction("NewCart");

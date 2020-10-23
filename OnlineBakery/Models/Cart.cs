@@ -2,7 +2,7 @@ namespace OnlineBakery.Models
 {
   public class Cart
   {       
-    public int LineId { get; set; }
+    public int CartId { get; set; }
     public int OrderId { get; set; }
     public int FlavorTreatId { get; set; }
     public int Quantity { get; set; }

@@ -44,10 +44,10 @@
       {
         <tr>
           <td>@Html.Label($"{line.FlavorTreat.Flavor.Name} {line.FlavorTreat.Treat.Name}")
-            @Html.ActionLink("", "DeleteItem", null, new { id = line.LineId }, new { @class = "btn btn-info fa fa-remove"})</td>
+            @Html.ActionLink("", "DeleteItem", null, new { id = line.CartId }, new { @class = "btn btn-info fa fa-remove"})</td>
           <td>@Html.Label($"{line.Quantity}")</td>
-          <td>@Html.ActionLink("", "MoreItem", null, new { id = line.LineId }, new { @class = "btn btn-info fa fa-plus"})</td>
-          <td>@Html.ActionLink("", "LessItem", null, new { id = line.LineId }, new { @class = "btn btn-info fa fa-minus"})</td>
+          <td>@Html.ActionLink("", "MoreItem", null, new { id = line.CartId }, new { @class = "btn btn-info fa fa-plus"})</td>
+          <td>@Html.ActionLink("", "LessItem", null, new { id = line.CartId }, new { @class = "btn btn-info fa fa-minus"})</td>
         </tr>
       }
       </table>
