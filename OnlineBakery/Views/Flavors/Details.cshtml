@@ -1,0 +1,31 @@
+@{
+  Layout = "_Layout";
+}
+@using Library.Models
+@model Library.Models.Author
+
+<h2>Author Details</h2>
+<hr />
+<h3>Author Name: @Html.DisplayFor(model => model.Name)</h3>
+<hr>
+<h3>Books by this @Html.DisplayFor(model => model.Name):</h3>
+@if (@Model.Books.Count == 0)
+{
+  <p>There are no books by @Html.DisplayFor(model => model.Name).</p>
+}
+else
+{
+  <ul>
+    @foreach (var join in Model.Books)
+    {
+      <li>@Html.ActionLink(@join.Book.Title, "Details", "Books", new { id = join.Book.BookId })
+        @Html.ActionLink("Delete", "DeleteBook", "Authors", new { joinId = @join.AuthorBookId, AuthorId = Model.AuthorId },
+    new { @class="btn btn-info fa fa-times" })
+      </li>
+    }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Edit Author", "Edit", new { id = Model.AuthorId })</p>
+<p>@Html.ActionLink("Delete Author", "Delete", new { id = Model.AuthorId })</p>

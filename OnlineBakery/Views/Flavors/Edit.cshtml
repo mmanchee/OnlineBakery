@@ -1,0 +1,28 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Library.Models.Author
+
+@Html.ActionLink(" Home", "Index", "Home", null, new { @class="btn btn-info fa fa-home" })
+@Html.ActionLink(" All Authors", "Index", null, null, new { @class="btn btn-info fa fa-address-book-o" })
+<hr />
+
+<p>Edit @Html.DisplayFor(model => model.Name)</p>
+<hr />
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.AuthorId)
+  <table>
+    <tr>
+      <td>@Html.LabelFor(model => model.Name)</td>
+      <td>@Html.EditorFor(model => model.Name)</td>
+    </tr>
+    <tr>
+      <td>@Html.Label("Select Book")</td>
+      <td>@Html.DropDownList("BookId")</td>
+    </tr>
+  </table>
+  <button type="submit" class="btn btn-info fa"><i class="fa-edit"> Save</i></button>
+}
+<hr />
