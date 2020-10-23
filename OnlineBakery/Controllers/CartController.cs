@@ -24,10 +24,6 @@ namespace OnlineBakery.Controllers
       _db = db;
     }
     
-    public CartController(OnlineBakeryContext db)
-    {
-      _db = db;
-    }
     // Index *****************
     public async Task<ActionResult> Index()
     {

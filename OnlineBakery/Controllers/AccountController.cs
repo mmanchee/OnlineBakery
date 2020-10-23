@@ -24,12 +24,9 @@ namespace OnlineBakery.Controllers
         _signInManager = signInManager;
         _db = db;
     }
-    public async Task<ActionResult> Index()
+    public ActionResult Index()
     {
-        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        var currentUser = await _userManager.FindByIdAsync(userId);
-        var userHistory = _db.Checkouts.Where(entry => entry.User.Id == currentUser.Id).ToList();
-        return View(userHistory);
+        return View();
     }
 
     public IActionResult Register()
