@@ -30,7 +30,12 @@
 </div>
 <hr />
 <hr />
-<p>Cart</p>
+<p>Cart
+  @if(@ViewBag.Cart != null)
+  {
+    @Html.ActionLink(" Purchase Cart", "BuyCart", null, null, new { @class = "btn btn-info fa fa-money"})
+  }
+</p>
 <hr />
 <div class="box">
   <div class="inner-box">
@@ -54,12 +59,11 @@
         </tr>
       }
       </table>
-      @Html.ActionLink(" Purchase Cart", "BuyCart", null, null, new { @class = "btn btn-info fa fa-money"})
     } 
     else
     {
       <p>No items in your cart</p>
     }
-  </div>  
+  </div>
 </div>
 <hr />

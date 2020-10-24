@@ -56,7 +56,6 @@ namespace OnlineBakery.Controllers
       return RedirectToAction("Create");
     }
     // DeleteItem
-    [HttpPost]
     public ActionResult DeleteItem(int id)
     {
       var thisCart = _db.Carts.FirstOrDefault(cart => cart.CartId == id);
