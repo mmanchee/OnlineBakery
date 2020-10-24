@@ -1,10 +1,10 @@
 @{
   Layout = "_Layout";
 }
-
+@* , userId = ViewBag.ClientId *@
 @using OnlineBakery.Models;
 @model List<OnlineBakery.Models.FlavorTreat>;
-
+@* *@
 <p>Menu</p>
 <hr />
 <div class="box">
@@ -16,7 +16,7 @@
       {
         <tr>
           <td>@Html.Label($"{item.Flavor.Name} {item.Treat.Name}")</td>
-          <td>@Html.ActionLink("", "Something", "Cart", new { id = item.FlavorTreatId }, new { @class = "btn btn-info fa fa-plus"})</td>
+          <td>@Html.ActionLink("", "AddToCart", "Cart", new { id = item.FlavorTreatId }, new { @class = "btn btn-info fa fa-plus"})</td>
         </tr>
       }
       </table>

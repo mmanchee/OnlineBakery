@@ -32,7 +32,6 @@ namespace OnlineBakery.Controllers
       var model = _db.Carts.Where(entry => entry.User.Id == currentUser.Id).OrderBy(entry => entry.OrderId).ToList();
       return View(model);
     }
-
     // New Cart ****************
     public async Task<ActionResult> Create()
     {
@@ -43,27 +42,16 @@ namespace OnlineBakery.Controllers
       {
         ViewBag.Cart = userCart;
       }
+      ViewBag.ClientId = currentUser.Id;
       List<FlavorTreat> model = _db.FlavorTreat.OrderBy(x => x.FlavorId).ToList();
       return View(model);
     }
-    public ActionResult Something(int id)
-    {
-      ViewBag.nothing = id;
-      return View();
-    }
     // AddToCart
-    [HttpPost]
     public async Task<ActionResult> AddToCart(int id)
     {
-      Console.WriteLine(id);
-      Cart cart = new Cart();
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
-      cart.FlavorTreatId = id;
-      cart.OrderId = 0;
-      cart.Quantity = 0;
-      cart.User = currentUser;
-      _db.Carts.Add(cart);
+      _db.Carts.Add(new Cart {FlavorTreatId = id, OrderId = 0, Quantity = 0, User = currentUser});
       _db.SaveChanges();
       return RedirectToAction("Create");
     }
