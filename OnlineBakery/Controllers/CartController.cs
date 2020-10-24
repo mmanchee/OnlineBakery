@@ -64,20 +64,16 @@ namespace OnlineBakery.Controllers
       _db.SaveChanges();
       return RedirectToAction("Create");
     }
-    [HttpPost]
-    public ActionResult MoreItem(int id)
+    
+    public ActionResult ChangeItem(int id, int qty)
     {
-      var thisCart = _db.Carts.FirstOrDefault(cart => cart.CartId == id);
-      thisCart.Quantity++;
-      _db.SaveChanges();
-      return RedirectToAction("Create");
-    }
-    [HttpPost]
-    public ActionResult LessItem(int id)
-    {
-      var thisCart = _db.Carts.FirstOrDefault(cart => cart.CartId == id);
-      thisCart.Quantity--;
-      _db.SaveChanges();
+      if(qty >= 0)
+      {
+        var cart = new Cart { CartId = id, Quantity = qty };
+        _db.Carts.Attach(cart);
+        _db.Entry(cart).Property(x => x.Quantity).IsModified = true;
+        _db.SaveChanges();
+      }
       return RedirectToAction("Create");
     }
     // BuyCart

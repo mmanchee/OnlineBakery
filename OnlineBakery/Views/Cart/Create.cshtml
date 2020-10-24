@@ -1,7 +1,7 @@
 @{
   Layout = "_Layout";
 }
-@* , userId = ViewBag.ClientId *@
+
 @using OnlineBakery.Models;
 @model List<OnlineBakery.Models.FlavorTreat>;
 @* *@
@@ -12,11 +12,12 @@
     @if (@Model.Any())
     {
       <table>
+
       @foreach (FlavorTreat item in Model)
       {
         <tr>
-          <td>@Html.Label($"{item.Flavor.Name} {item.Treat.Name}")</td>
           <td>@Html.ActionLink("", "AddToCart", "Cart", new { id = item.FlavorTreatId }, new { @class = "btn btn-info fa fa-plus"})</td>
+          <td>@Html.Label($"{item.Flavor.Name} {item.Treat.Name}")</td>
         </tr>
       }
       </table>
@@ -39,17 +40,17 @@
         <tr>
           <th>Item</th>
           <th>Quantity</th>
-          <th>More</th>
-          <th>Less</th>
+          <th class="t-space">More</th>
+          <th class="t-space">Less</th>
         </tr>
       @foreach (Cart line in ViewBag.Cart)
       {
         <tr>
-          <td>@Html.Label($"{line.FlavorTreat.Flavor.Name} {line.FlavorTreat.Treat.Name}")
-            @Html.ActionLink("", "DeleteItem", null, new { id = line.CartId }, new { @class = "btn btn-info fa fa-remove"})</td>
+          <td>@Html.ActionLink("", "DeleteItem", null, new { id = line.CartId }, new { @class = "btn btn-info fa fa-remove"})
+            @Html.Label($"{line.FlavorTreat.Flavor.Name} {line.FlavorTreat.Treat.Name}")</td>
           <td>@Html.Label($"{line.Quantity}")</td>
-          <td>@Html.ActionLink("", "MoreItem", null, new { id = line.CartId }, new { @class = "btn btn-info fa fa-plus"})</td>
-          <td>@Html.ActionLink("", "LessItem", null, new { id = line.CartId }, new { @class = "btn btn-info fa fa-minus"})</td>
+          <td>@Html.ActionLink("", "ChangeItem", null, new { id = line.CartId, qty = (line.Quantity + 1) }, new { @class = "btn btn-info fa fa-plus"})</td>
+          <td>@Html.ActionLink("", "ChangeItem", null, new { id = line.CartId, qty = (line.Quantity - 1) }, new { @class = "btn btn-info fa fa-minus"})</td>
         </tr>
       }
       </table>
