@@ -8,6 +8,10 @@
 
 Pierre is back again, This time around, he wants a web site were customers can log in and create an order of tasty treats. He wants to be able to have his customers mix and match treats in all sorts of flavors. Pierre can add new items but the customers can only build a basket.
 
+Admin -
+User: admin@OnlineBakery.local
+Pass: NotSecure123!!
+
 <!-- Brainstorming
 View a list of Treats
 View a list of Flavors
@@ -66,22 +70,7 @@ add Admin Access
   * In the terminal, navigate to the project folder
   * Type "dotnet ef migrations add Initial" and wait for migration file to be built
   * Type "dotnet ef database update" and wait for build confirmation
-  
-* Setup with SQL statements 
-  * Enter the following code into your SQL database and run.
-  ``` SQL
-  
-  ```
 
-* Setup with SQL Import
-  * MySQL
-    * In the Navigator > Administration window, select Data Import/Restore.
-    * In Import Options select Import from Self-Contained File.
-    * Navigate to mike_manchee.sql.
-    * Under Default Schema to be Imported To, select the New button.
-      * Enter 'mike_manchee' as the name of your database.
-      * Click Ok.
-    * Click Start Import.
 
 ## Known Bugs
 
