@@ -17,13 +17,10 @@
       <td>@Html.LabelFor(model => model.Name)</td>
       <td>@Html.EditorFor(model => model.Name)</td>
     </tr>
-    @if(ViewBag.FavorId != null)
-    {
-      <tr>
-        <td>@Html.Label("Select Flavor")</td>
-        <td>@Html.DropDownList("FlavorId", "none")</td>
-      </tr>
-    }
+    <tr>
+      <td>@Html.Label("Select Flavor")</td>
+      <td>@Html.DropDownList("FlavorId", "none")</td>
+    </tr>
   </table>
   <button type="submit" class="btn btn-info fa"><i class="fa-edit"> Save</i></button>
 }
