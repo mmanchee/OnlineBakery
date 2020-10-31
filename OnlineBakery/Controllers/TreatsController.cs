@@ -72,9 +72,13 @@ namespace OnlineBakery.Controllers
     {
       var thisTreat = _db.Treats.FirstOrDefault(treats => treats.TreatId == id);
       var thisFlavorTreat = _db.FlavorTreat.FirstOrDefault(x => x.TreatId == thisTreat.TreatId);
-      if(_db.Flavors.Any())
+      if(thisFlavorTreat != null)
       {
         ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name", thisFlavorTreat.FlavorId);
+      }
+      else
+      {
+        ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
       }
       return View(thisTreat);
     }
