@@ -3,12 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using OnlineBakery.Models;
 using System.Threading.Tasks;
 using OnlineBakery.ViewModels;
-using System;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Security.Claims;
 
 namespace OnlineBakery.Controllers
 {
@@ -41,7 +35,7 @@ namespace OnlineBakery.Controllers
         IdentityResult result = await _userManager.CreateAsync(user, model.Password);
         if (result.Succeeded)
         {
-            return RedirectToAction("Index");
+            return RedirectToAction("Login");
         }
         else
         {
@@ -68,8 +62,9 @@ namespace OnlineBakery.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> LogOff()
+    public async Task<ActionResult> LogOut()
     {
+        System.Console.WriteLine("in");
         await _signInManager.SignOutAsync();
         return RedirectToAction("Index");
     }

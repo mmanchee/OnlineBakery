@@ -11,11 +11,11 @@
 
 <body>
   <div class="container">
-    @await Html.PartialAsync("Header")
+    @await Html.PartialAsync("_Header")
     <div id="render">
       @RenderBody()
     </div>
-    @Html.Partial("Footer")
+    @Html.Partial("_Footer")
   </div>
 </body>
 

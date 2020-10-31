@@ -32,7 +32,7 @@
     @if (User.Identity.IsAuthenticated)
     {
       @User.Identity.Name
-      @Html.ActionLink(" Log Off", "Index","Account", null, new { @class = "btn btn-info fa fa-sign-out"})
+      @Html.ActionLink(" Log Off", "LogOut", "Account", null, new { @class = "btn btn-info fa fa-sign-out"})
     }
     else
     {
