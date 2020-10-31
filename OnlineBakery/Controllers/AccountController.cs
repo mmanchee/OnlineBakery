@@ -60,13 +60,10 @@ namespace OnlineBakery.Controllers
             return View();
         }
     }
-
-    [HttpPost]
     public async Task<ActionResult> LogOut()
     {
-        System.Console.WriteLine("in");
         await _signInManager.SignOutAsync();
-        return RedirectToAction("Index");
+        return RedirectToAction("Index", "Home");
     }
   }
 }

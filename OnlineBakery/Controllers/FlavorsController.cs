@@ -60,6 +60,13 @@ namespace OnlineBakery.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+    public ActionResult DeleteTreat(int joinId, int FlavorId)
+    {
+      var joinEntry = _db.FlavorTreat.FirstOrDefault(entry => entry.FlavorTreatId == joinId);
+      _db.FlavorTreat.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = FlavorId });
+    }
     // Edit **************
     public ActionResult Edit(int id)
     {

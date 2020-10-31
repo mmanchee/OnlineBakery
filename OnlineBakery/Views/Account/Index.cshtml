@@ -16,21 +16,8 @@
 }
 else
 {
-  <p>Log in with your account</p>
+  <p>Log in with your account or Register</p>
   <hr />
-  @using (Html.BeginForm("Login"))
-  {
-    <table>
-      <tr>
-        <td>@Html.LabelFor(m => m.Email)</td>
-        <td>@Html.TextBoxFor(m => m.Email)</td>
-      </tr>
-      <tr>
-        <td>@Html.LabelFor(m => m.Password)</td>
-        <td>@Html.PasswordFor(m => m.Password)</td>
-      </tr>
-    </table>
-    <hr />
-    <button type="submit" value="Log in" class="btn btn-info fa"><i class="fa-sign-in"> Log in</i></button>
-  }
+  @Html.ActionLink(" Log in", "Login", "Account", null, new { @class = "btn btn-info fa fa-sign-in" })
+  @Html.ActionLink(" Register", "Register", "Account", null, new {@class = "btn btn-info fa fa-pencil-square-o"})
 }
